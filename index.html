@@ -202,7 +202,6 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 16px
   <div class="nav-links">
     <a class="act">Home</a>
     <a onclick="filt('women')">Women</a>
-    <a onclick="filt('men')">Men</a>
     <a onclick="filt('accessories')">Accessories</a>
     <a onclick="filt('sale')">Sale</a>
   </div>
@@ -236,7 +235,6 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 16px
     <p>Premium fabrics, flattering silhouettes — crafted to make you feel radiant every day.</p>
     <div class="hero-btns">
       <button class="btn-yellow" onclick="filt('women')">Shop Women</button>
-      <button class="btn-teal" onclick="filt('men')">Shop Men</button>
     </div>
   </div>
   <div class="hero-icons">
@@ -258,10 +256,10 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 16px
     <h2 class="sec-t">Shop by <span>category</span></h2>
   </div>
   <div class="cat-grid">
-    <div class="cat-tile c1" onclick="filt('women')"><i class="ti ti-dress"></i><span>Kurtas</span><div class="cat-count">42 styles</div></div>
-    <div class="cat-tile c2" onclick="filt('women')"><i class="ti ti-shirt"></i><span>Tops</span><div class="cat-count">38 styles</div></div>
-    <div class="cat-tile c3" onclick="filt('women')"><i class="ti ti-crown"></i><span>Co-ord Sets</span><div class="cat-count">24 styles</div></div>
-    <div class="cat-tile c4" onclick="filt('accessories')"><i class="ti ti-sunglasses"></i><span>Accessories</span><div class="cat-count">56 styles</div></div>
+    <div class="cat-tile c1" onclick="filt('women')"><i class="ti ti-dress"></i><span>Kurtas</span><div class="cat-count">0 styles</div></div>
+    <div class="cat-tile c2" onclick="filt('women')"><i class="ti ti-shirt"></i><span>Tops</span><div class="cat-count">0 styles</div></div>
+    <div class="cat-tile c3" onclick="filt('women')"><i class="ti ti-crown"></i><span>Co-ord Sets</span><div class="cat-count">0 styles</div></div>
+    <div class="cat-tile c4" onclick="filt('accessories')"><i class="ti ti-sunglasses"></i><span>Accessories</span><div class="cat-count">0 styles</div></div>
   </div>
 </div>
 
@@ -272,7 +270,6 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 16px
   <div class="fbar">
     <button class="fb act" onclick="setF(this,'all')">All</button>
     <button class="fb" onclick="setF(this,'women')">Women</button>
-    <button class="fb" onclick="setF(this,'men')">Men</button>
     <button class="fb" onclick="setF(this,'accessories')">Accessories</button>
     <button class="fb" onclick="setF(this,'sale')">Sale</button>
   </div>
@@ -379,7 +376,7 @@ function waBuy(id){
   const p=prods.find(x=>x.id===id);
   const sz=sel[id]||(p.sizes[0]==='Free Size'?'Free Size':null);
   if(!sz){showT('Please select a size first');return;}
-  const msg=encodeURIComponent('Hi MS GlowFit! I want to order:\n*'+p.name+'*\nSize: '+sz+'\nPrice: Rs.'+p.price.toLocaleString()+'\n\nPlease confirm!');
+  const msg=encodeURIComponent('Hi MS GlowFit:-) I want to order:\n*'+p.name+'*\nSize: '+sz+'\nPrice: Rs.'+p.price.toLocaleString()+'\n\nPlease confirm!');
   window.open('https://wa.me/'+WA+'?text='+msg,'_blank');
 }
 function waOrder(){
