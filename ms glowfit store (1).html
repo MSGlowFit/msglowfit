@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>MS GlowFit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{max-width:100%;overflow-x:hidden}
+:root{
+  --yellow:#F5C800;
+  --yellow-pale:#FFFBEA;
+  --yellow-dark:#D4A800;
+  --teal:#00B4A6;
+  --teal-light:#E0F7F5;
+  --coral:#FF6B6B;
+  --coral-light:#FFF0F0;
+  --black:#0F0F0F;
+  --charcoal:#1E1E1E;
+  --dark-gray:#2C2C2C;
+  --mid-gray:#888888;
+  --light-gray:#F4F4F4;
+  --white:#FFFFFF;
+  --border-light:#EFEFEF;
+  --wa:#25D366
+}
+body{font-family:'DM Sans',sans-serif;background:var(--light-gray);color:var(--black)}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:60px;background:var(--black);position:sticky;top:0;z-index:100;width:100%}
+.brand{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.brand-badge{background:var(--yellow);color:var(--black);font-family:'Playfair Display',serif;font-size:12px;font-weight:500;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.brand-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:500;color:var(--white);letter-spacing:.04em;white-space:nowrap}
+.brand-name span{color:var(--yellow);font-style:italic}
+.nav-links{display:flex;gap:16px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:0 8px}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);cursor:pointer;text-decoration:none;white-space:nowrap;transition:color .2s;padding:4px 0;border-bottom:2px solid transparent;flex-shrink:0}
+.nav-links a:hover{color:var(--yellow)}
+.nav-links a.act{color:var(--yellow);border-bottom-color:var(--yellow)}
+.nav-r{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.nav-r i{font-size:20px;color:rgba(255,255,255,0.55);cursor:pointer;transition:color .2s}
+.nav-r i:hover{color:var(--yellow)}
+.cwrap{display:flex;align-items:flex-start;cursor:pointer;position:relative}
+.cbadge{background:var(--yellow);color:var(--black);font-size:9px;border-radius:50%;width:16px;height:16px;display:flex;align-items:center;justify-content:center;position:absolute;top:-6px;right:-7px;font-weight:700}
+
+/* TICKER */
+.ticker{background:var(--yellow);padding:8px 0;overflow:hidden;white-space:nowrap;width:100%}
+.ticker-inner{display:inline-flex;gap:40px;animation:tick 20s linear infinite}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ticker span{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--black);font-weight:600;display:inline-flex;align-items:center;gap:7px}
+.ticker i{font-size:13px}
+
+/* HERO */
+.hero{display:flex;flex-direction:column;width:100%}
+.hero-l{background:var(--black);padding:40px 16px 36px;position:relative;overflow:hidden}
+.hero-l::before{content:'';position:absolute;top:-60px;left:-60px;width:200px;height:200px;background:var(--yellow);opacity:.07;border-radius:50%}
+.hero-tag{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);margin-bottom:12px;font-weight:600}
+.hero-l h1{font-family:'Playfair Display',serif;font-size:36px;font-weight:400;line-height:1.15;color:var(--white);position:relative;z-index:1}
+.hero-l h1 em{font-style:italic;color:var(--yellow)}
+.hero-l p{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.85;margin:14px 0 24px;font-weight:300;position:relative;z-index:1}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:1}
+.btn-yellow{background:var(--yellow);color:var(--black);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.15em;text-transform:uppercase;padding:12px 22px;border:none;cursor:pointer;border-radius:6px;font-weight:700;transition:all .2s;white-space:nowrap}
+.btn-yellow:hover{background:var(--yellow-dark)}
+.btn-teal{background:transparent;color:var(--teal);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.15em;text-transform:uppercase;padding:11px 22px;border:2px solid var(--teal);cursor:pointer;border-radius:6px;font-weight:600;transition:all .2s;white-space:nowrap}
+.btn-teal:hover{background:var(--teal);color:var(--white)}
+.hero-icons{display:grid;grid-template-columns:1fr 1fr 1fr;height:140px;width:100%}
+.hbox{display:flex;align-items:center;justify-content:center}
+.hbox.a{background:var(--yellow)}
+.hbox.b{background:var(--teal)}
+.hbox.c{background:var(--charcoal)}
+.hbox i{font-size:36px}
+.hbox.a i{color:var(--black);opacity:.3}
+.hbox.b i{color:var(--white);opacity:.7}
+.hbox.c i{color:var(--yellow);opacity:.6}
+
+/* STATS */
+.statsbar{background:var(--white);display:grid;grid-template-columns:repeat(2,1fr);border-bottom:1px solid var(--border-light);width:100%}
+.stat{padding:16px 12px;text-align:center;border-right:1px solid var(--border-light);border-bottom:1px solid var(--border-light)}
+.stat:nth-child(2n){border-right:none}
+.stat:nth-child(3),.stat:nth-child(4){border-bottom:none}
+.stat-n{font-family:'Playfair Display',serif;font-size:22px;font-weight:500;color:var(--black)}
+.stat-n span{color:var(--yellow);font-size:18px}
+.stat-l{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mid-gray);margin-top:2px;font-weight:400}
+
+/* CATEGORIES */
+.cats{padding:32px 16px;background:var(--white);width:100%}
+.sec-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.sec-t{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:var(--black)}
+.sec-t span{color:var(--yellow);font-style:italic}
+.see-all{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);cursor:pointer;font-weight:600;white-space:nowrap}
+.cat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;width:100%}
+.cat-tile{position:relative;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer;border-radius:12px;overflow:hidden;transition:transform .2s;width:100%}
+.cat-tile:hover{transform:scale(1.02)}
+.cat-tile.c1{background:var(--black)}
+.cat-tile.c2{background:var(--teal)}
+.cat-tile.c3{background:var(--yellow)}
+.cat-tile.c4{background:var(--charcoal)}
+.cat-tile i{font-size:26px}
+.cat-tile.c1 i,.cat-tile.c4 i{color:var(--yellow)}
+.cat-tile.c2 i{color:var(--white)}
+.cat-tile.c3 i{color:var(--black)}
+.cat-tile span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+.cat-tile.c1 span,.cat-tile.c4 span{color:var(--white)}
+.cat-tile.c2 span{color:var(--white)}
+.cat-tile.c3 span{color:var(--black)}
+.cat-count{font-size:10px;font-weight:300}
+.cat-tile.c1 .cat-count,.cat-tile.c4 .cat-count{color:rgba(255,255,255,.5)}
+.cat-tile.c2 .cat-count{color:rgba(255,255,255,.65)}
+.cat-tile.c3 .cat-count{color:rgba(0,0,0,.5)}
+
+/* PRODUCTS */
+.psec{padding:32px 16px;background:var(--light-gray);width:100%}
+.fbar{display:flex;gap:7px;margin-bottom:20px;flex-wrap:wrap;width:100%}
+.fb{font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:7px 14px;border:1.5px solid var(--border-light);background:var(--white);color:var(--mid-gray);cursor:pointer;border-radius:20px;transition:all .2s;font-weight:500;white-space:nowrap}
+.fb:hover{border-color:var(--yellow);color:var(--black)}
+.fb.act{border-color:var(--yellow);background:var(--yellow);color:var(--black);font-weight:700}
+.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;width:100%}
+.pcard{border-radius:12px;overflow:hidden;background:var(--white);transition:all .25s;border:1.5px solid transparent;width:100%}
+.pcard:hover{border-color:var(--yellow)}
+.pthumb{aspect-ratio:3/4;position:relative;overflow:hidden;width:100%}
+.ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.ph i{font-size:28px}
+.ph span{font-size:9px;letter-spacing:.1em;text-transform:uppercase;opacity:.5}
+.pbadge{position:absolute;top:8px;left:8px;font-size:8px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:20px;font-weight:700}
+.bnew{background:var(--yellow);color:var(--black)}
+.bsale{background:var(--coral);color:var(--white)}
+.bhot{background:var(--teal);color:var(--white)}
+.pwish{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.9);border:none;cursor:pointer;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.pwish i{font-size:14px;color:var(--mid-gray);transition:color .2s}
+.pwish.liked i{color:var(--coral)}
+.pinfo{padding:10px 12px 12px}
+.pname{font-family:'Playfair Display',serif;font-size:13px;font-weight:400;margin-bottom:2px;color:var(--black)}
+.psub{font-size:10px;color:var(--mid-gray);margin-bottom:8px;font-weight:300}
+.slabel{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--mid-gray);margin-bottom:5px;font-weight:600}
+.sopts{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px}
+.sz{font-size:9px;font-weight:600;border:1.5px solid var(--border-light);background:var(--white);color:var(--mid-gray);cursor:pointer;min-width:28px;height:26px;padding:0 5px;display:flex;align-items:center;justify-content:center;border-radius:5px;transition:all .15s;font-family:'DM Sans',sans-serif}
+.sz:hover{border-color:var(--yellow);color:var(--black)}
+.sz.sel{border-color:var(--yellow);background:var(--yellow);color:var(--black);font-weight:700}
+.sz.oos{opacity:.3;cursor:not-allowed;text-decoration:line-through}
+.prow{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:4px}
+.pprice{font-size:13px;font-weight:700;color:var(--black)}
+.pold{text-decoration:line-through;color:var(--mid-gray);margin-right:4px;font-weight:300;font-size:11px}
+.pdiscount{font-size:10px;font-weight:600;color:var(--coral);background:var(--coral-light);padding:2px 6px;border-radius:8px}
+.cbtns{display:flex;gap:6px;width:100%}
+.badd{flex:1;background:var(--black);color:var(--white);border:none;font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:10px 6px;cursor:pointer;border-radius:6px;font-weight:600;transition:all .2s;white-space:nowrap;min-width:0}
+.badd:hover{background:var(--yellow);color:var(--black)}
+.bwa{background:var(--wa);color:white;border:none;font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:10px 10px;cursor:pointer;border-radius:6px;display:flex;align-items:center;gap:4px;font-weight:600;white-space:nowrap;transition:background .2s;flex-shrink:0}
+.bwa:hover{background:#1EBD5A}
+.bwa i{font-size:13px}
+
+/* PROMO */
+.promo-wrap{padding:0 16px 36px;background:var(--light-gray);width:100%}
+.promo{background:var(--black);padding:32px 20px;display:flex;flex-direction:column;gap:20px;border-radius:12px;border:2px solid var(--yellow);width:100%}
+.promo h2{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:var(--white)}
+.promo h2 em{color:var(--yellow);font-style:italic}
+.promo p{font-size:12px;color:rgba(255,255,255,.55);margin-top:6px;font-weight:300}
+.promo-btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn-promo-y{background:var(--yellow);color:var(--black);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.15em;text-transform:uppercase;padding:12px 24px;border:none;cursor:pointer;border-radius:6px;font-weight:700;white-space:nowrap}
+.btn-promo-t{background:transparent;color:var(--teal);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.15em;text-transform:uppercase;padding:11px 24px;border:2px solid var(--teal);cursor:pointer;border-radius:6px;font-weight:600;white-space:nowrap}
+
+/* FLOAT WA */
+.wafloat{position:fixed;bottom:20px;right:16px;background:var(--wa);color:white;border:none;cursor:pointer;border-radius:50px;padding:12px 18px;font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;display:flex;align-items:center;gap:7px;z-index:50;box-shadow:0 4px 16px rgba(37,211,102,.35)}
+.wafloat i{font-size:16px}
+
+/* CART */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:190;display:none}
+.overlay.show{display:block}
+.cpanel{position:fixed;right:0;top:0;bottom:0;width:min(300px,90vw);background:var(--white);border-left:3px solid var(--yellow);z-index:200;transform:translateX(100%);transition:transform .35s;padding:20px;overflow-y:auto}
+.cpanel.open{transform:translateX(0)}
+.ctop{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid var(--yellow)}
+.ctop h2{font-family:'Playfair Display',serif;font-size:19px;font-weight:400}
+.ci{display:flex;gap:11px;padding:11px 0;border-bottom:1px solid var(--border-light)}
+.cithumb{width:52px;height:65px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.cithumb i{font-size:18px;opacity:.55}
+.ciname{font-family:'Playfair Display',serif;font-size:13px;font-weight:400;margin-bottom:2px}
+.cisub{font-size:11px;color:var(--mid-gray);font-weight:300}
+.ciprice{font-size:12px;font-weight:700;margin-top:4px}
+.crem{background:none;border:none;color:var(--mid-gray);cursor:pointer;font-size:16px;align-self:flex-start;margin-left:auto}
+.cfoot{margin-top:18px}
+.ctrow{display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px;color:var(--mid-gray);font-weight:300}
+.ctrow.big{font-family:'Playfair Display',serif;font-size:17px;color:var(--black);margin-top:10px;padding-top:10px;border-top:2px solid var(--yellow)}
+.chkbtn{width:100%;background:var(--yellow);color:var(--black);border:none;font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.15em;text-transform:uppercase;padding:13px;cursor:pointer;margin-top:12px;border-radius:8px;font-weight:700}
+.wachk{width:100%;background:var(--wa);color:white;border:none;font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:12px;cursor:pointer;margin-top:8px;border-radius:8px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:7px}
+.wachk i{font-size:14px}
+
+/* TOAST */
+.toast{position:fixed;bottom:80px;left:16px;right:16px;background:var(--black);color:var(--yellow);padding:12px 16px;font-size:12px;display:flex;align-items:center;gap:8px;border-radius:8px;border-left:4px solid var(--yellow);opacity:0;transform:translateY(10px);transition:all .3s;font-weight:500;z-index:300;pointer-events:none}
+.toast.show{opacity:1;transform:translateY(0)}
+.toast i{font-size:15px;flex-shrink:0}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">
+    <div class="brand-badge">MS</div>
+    <div class="brand-name">Glow<span>Fit</span></div>
+  </div>
+  <div class="nav-links">
+    <a class="act">Home</a>
+    <a onclick="filt('women')">Women</a>
+    <a onclick="filt('men')">Men</a>
+    <a onclick="filt('accessories')">Accessories</a>
+    <a onclick="filt('sale')">Sale</a>
+  </div>
+  <div class="nav-r">
+    <div class="cwrap" onclick="toggleCart()">
+      <i class="ti ti-shopping-bag"></i>
+      <div class="cbadge" id="cbadge">0</div>
+    </div>
+  </div>
+</nav>
+
+<div class="ticker">
+  <div class="ticker-inner">
+    <span><i class="ti ti-star"></i>New arrivals</span>
+    <span><i class="ti ti-truck"></i>Free shipping above Rs.999</span>
+    <span><i class="ti ti-brand-whatsapp"></i>Order on WhatsApp</span>
+    <span><i class="ti ti-refresh"></i>Easy 15-day returns</span>
+    <span><i class="ti ti-shield-check"></i>100% authentic</span>
+    <span><i class="ti ti-star"></i>New arrivals</span>
+    <span><i class="ti ti-truck"></i>Free shipping above Rs.999</span>
+    <span><i class="ti ti-brand-whatsapp"></i>Order on WhatsApp</span>
+    <span><i class="ti ti-refresh"></i>Easy 15-day returns</span>
+    <span><i class="ti ti-shield-check"></i>100% authentic</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="hero-l">
+    <div class="hero-tag">New Season · 2026 Collection</div>
+    <h1>Where style<br>meets your <em>glow.</em></h1>
+    <p>Premium fabrics, flattering silhouettes — crafted to make you feel radiant every day.</p>
+    <div class="hero-btns">
+      <button class="btn-yellow" onclick="filt('women')">Shop Women</button>
+      <button class="btn-teal" onclick="filt('men')">Shop Men</button>
+    </div>
+  </div>
+  <div class="hero-icons">
+    <div class="hbox a"><i class="ti ti-hanger"></i></div>
+    <div class="hbox b"><i class="ti ti-sparkles"></i></div>
+    <div class="hbox c"><i class="ti ti-diamond"></i></div>
+  </div>
+</section>
+
+<div class="statsbar">
+  <div class="stat"><div class="stat-n">500<span>+</span></div><div class="stat-l">Styles</div></div>
+  <div class="stat"><div class="stat-n">12K<span>+</span></div><div class="stat-l">Customers</div></div>
+  <div class="stat"><div class="stat-n">4.9<span>★</span></div><div class="stat-l">Rating</div></div>
+  <div class="stat"><div class="stat-n">Free</div><div class="stat-l">Shipping</div></div>
+</div>
+
+<div class="cats">
+  <div class="sec-hd">
+    <h2 class="sec-t">Shop by <span>category</span></h2>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-tile c1" onclick="filt('women')"><i class="ti ti-dress"></i><span>Kurtas</span><div class="cat-count">42 styles</div></div>
+    <div class="cat-tile c2" onclick="filt('women')"><i class="ti ti-shirt"></i><span>Tops</span><div class="cat-count">38 styles</div></div>
+    <div class="cat-tile c3" onclick="filt('women')"><i class="ti ti-crown"></i><span>Co-ord Sets</span><div class="cat-count">24 styles</div></div>
+    <div class="cat-tile c4" onclick="filt('accessories')"><i class="ti ti-sunglasses"></i><span>Accessories</span><div class="cat-count">56 styles</div></div>
+  </div>
+</div>
+
+<section class="psec">
+  <div class="sec-hd">
+    <h2 class="sec-t">Featured <span>picks</span></h2>
+  </div>
+  <div class="fbar">
+    <button class="fb act" onclick="setF(this,'all')">All</button>
+    <button class="fb" onclick="setF(this,'women')">Women</button>
+    <button class="fb" onclick="setF(this,'men')">Men</button>
+    <button class="fb" onclick="setF(this,'accessories')">Accessories</button>
+    <button class="fb" onclick="setF(this,'sale')">Sale</button>
+  </div>
+  <div class="pgrid" id="pgrid"></div>
+</section>
+
+<div class="promo-wrap">
+  <div class="promo">
+    <div>
+      <h2>Glow Season Sale —<br><em>Up to 40% off</em></h2>
+      <p>Limited time · Select styles · Premium quality</p>
+    </div>
+    <div class="promo-btns">
+      <button class="btn-promo-y">Shop Sale</button>
+      <button class="btn-promo-t">New Arrivals</button>
+    </div>
+  </div>
+</div>
+
+<button class="wafloat" onclick="waEnq()"><i class="ti ti-brand-whatsapp"></i>Chat with us</button>
+
+<div class="overlay" id="cov" onclick="toggleCart()"></div>
+<div class="cpanel" id="cpanel">
+  <div class="ctop">
+    <h2>Your bag</h2>
+    <i class="ti ti-x" style="font-size:19px;cursor:pointer;color:var(--mid-gray)" onclick="toggleCart()"></i>
+  </div>
+  <div id="citems"></div>
+  <div class="cfoot" id="cfoot" style="display:none">
+    <div class="ctrow"><span>Subtotal</span><span id="csub">Rs.0</span></div>
+    <div class="ctrow"><span>Shipping</span><span style="color:var(--teal);font-weight:600">Free</span></div>
+    <div class="ctrow big"><span>Total</span><span id="ctot">Rs.0</span></div>
+    <button class="chkbtn">Proceed to checkout</button>
+    <button class="wachk" onclick="waOrder()"><i class="ti ti-brand-whatsapp"></i>Order via WhatsApp</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"><i class="ti ti-check"></i><span id="tmsg">Added</span></div>
+
+<script>
+const WA='919080880640';
+const thumbs=[
+  {bg:'#1E1E1E',ac:'#F5C800'},
+  {bg:'#00B4A6',ac:'#FFFFFF'},
+  {bg:'#F5C800',ac:'#0F0F0F'},
+  {bg:'#2C2C2C',ac:'#00B4A6'},
+  {bg:'#111',ac:'#F5C800'},
+  {bg:'#1a1a2e',ac:'#FF6B6B'},
+];
+const prods=[
+  {id:1,name:"Floral Anarkali Kurta",sub:"Kurtas · Yellow",price:2199,cat:"women",badge:"new",sizes:["XS","S","M","L","XL"],oos:[],ic:"ti-dress",t:0},
+  {id:2,name:"Embroidered Co-ord Set",sub:"Sets · Teal & White",price:3499,cat:"women",badge:"hot",sizes:["S","M","L","XL","XXL"],oos:["XXL"],ic:"ti-crown",t:1},
+  {id:3,name:"Premium Linen Shirt",sub:"Tops · White",price:1299,oldPrice:1799,cat:"men",badge:"sale",sizes:["S","M","L","XL","XXL"],oos:[],ic:"ti-shirt",t:2},
+  {id:4,name:"High-Waist Palazzo",sub:"Bottoms · Black",price:1599,cat:"women",sizes:["XS","S","M","L","XL"],oos:["XS"],ic:"ti-layout-rows",t:3},
+  {id:5,name:"Silk Printed Dupatta",sub:"Accessories · Yellow",price:799,cat:"accessories",badge:"new",sizes:["Free Size"],oos:[],ic:"ti-sparkles",t:4},
+  {id:6,name:"Slim Chino Trousers",sub:"Bottoms · Charcoal",price:1899,oldPrice:2499,cat:"men",badge:"sale",sizes:["28","30","32","34","36"],oos:["36"],ic:"ti-layout-rows",t:5},
+];
+let cart=[],sel={};
+
+function dc(p){return p.oldPrice?Math.round((1-p.price/p.oldPrice)*100):0}
+
+function render(filter){
+  const list=filter==='all'?prods:filter==='sale'?prods.filter(p=>p.oldPrice):prods.filter(p=>p.cat===filter);
+  document.getElementById('pgrid').innerHTML=list.length?list.map(p=>{
+    const tm=thumbs[p.t];const d=dc(p);
+    return`<div class="pcard">
+      <div class="pthumb">
+        <div class="ph" style="background:${tm.bg}">
+          <i class="ti ${p.ic}" style="color:${tm.ac}"></i>
+          <span style="color:${tm.ac}">${p.sub.split('·')[0].trim()}</span>
+        </div>
+        ${p.badge?`<div class="pbadge ${p.badge==='new'?'bnew':p.badge==='hot'?'bhot':'bsale'}">${p.badge==='hot'?'Hot':p.badge}</div>`:''}
+        <button class="pwish" id="w${p.id}" onclick="wish(${p.id})"><i class="ti ti-heart"></i></button>
+      </div>
+      <div class="pinfo">
+        <div class="pname">${p.name}</div>
+        <div class="psub">${p.sub}</div>
+        <div class="slabel">Size</div>
+        <div class="sopts" id="s${p.id}">
+          ${p.sizes.map(s=>`<button class="sz${p.oos.includes(s)?' oos':''}" ${p.oos.includes(s)?'disabled':''} onclick="pick(${p.id},'${s}',this)">${s}</button>`).join('')}
+        </div>
+        <div class="prow">
+          <div class="pprice">${p.oldPrice?`<span class="pold">Rs.${p.oldPrice.toLocaleString()}</span>`:''}Rs.${p.price.toLocaleString()}</div>
+          ${d?`<span class="pdiscount">${d}% off</span>`:''}
+        </div>
+        <div class="cbtns">
+          <button class="badd" onclick="addC(${p.id})">Add to bag</button>
+          <button class="bwa" onclick="waBuy(${p.id})"><i class="ti ti-brand-whatsapp"></i>Buy</button>
+        </div>
+      </div>
+    </div>`}).join(''):`<p style="grid-column:span 2;text-align:center;color:var(--mid-gray);padding:40px 0;font-size:13px">No products found.</p>`;
+}
+
+function pick(id,s,btn){
+  document.getElementById('s'+id).querySelectorAll('.sz').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');sel[id]=s;
+}
+function wish(id){
+  const b=document.getElementById('w'+id);b.classList.toggle('liked');
+  showT(b.classList.contains('liked')?'Added to wishlist':'Removed from wishlist');
+}
+function addC(id){
+  const p=prods.find(x=>x.id===id);
+  const sz=sel[id]||(p.sizes[0]==='Free Size'?'Free Size':null);
+  if(!sz){showT('Please select a size first');return;}
+  const key=id+'-'+sz,ex=cart.find(x=>x.key===key);
+  if(ex)ex.qty++;else cart.push({...p,key,size:sz,qty:1});
+  updCart();showT('Added: '+p.name+' ('+sz+')');
+}
+function waBuy(id){
+  const p=prods.find(x=>x.id===id);
+  const sz=sel[id]||(p.sizes[0]==='Free Size'?'Free Size':null);
+  if(!sz){showT('Please select a size first');return;}
+  const msg=encodeURIComponent('Hi MS GlowFit! I want to order:\n*'+p.name+'*\nSize: '+sz+'\nPrice: Rs.'+p.price.toLocaleString()+'\n\nPlease confirm!');
+  window.open('https://wa.me/'+WA+'?text='+msg,'_blank');
+}
+function waOrder(){
+  if(!cart.length)return;
+  const items=cart.map(i=>'- '+i.name+' (Size: '+i.size+') x'+i.qty+' = Rs.'+(i.price*i.qty).toLocaleString()).join('\n');
+  const tot=cart.reduce((a,b)=>a+b.price*b.qty,0);
+  window.open('https://wa.me/'+WA+'?text='+encodeURIComponent('Hi MS GlowFit! My order:\n\n'+items+'\n\nTotal: Rs.'+tot.toLocaleString()+'\n\nPlease confirm!'),'_blank');
+}
+function waEnq(){window.open('https://wa.me/'+WA+'?text='+encodeURIComponent('Hi MS GlowFit! I have a question.'),'_blank');}
+function remC(key){cart=cart.filter(x=>x.key!==key);updCart();}
+function updCart(){
+  const n=cart.reduce((a,b)=>a+b.qty,0);
+  document.getElementById('cbadge').textContent=n;
+  const tot=cart.reduce((a,b)=>a+b.price*b.qty,0);
+  document.getElementById('csub').textContent='Rs.'+tot.toLocaleString();
+  document.getElementById('ctot').textContent='Rs.'+tot.toLocaleString();
+  document.getElementById('cfoot').style.display=cart.length?'block':'none';
+  document.getElementById('citems').innerHTML=cart.map(p=>`
+    <div class="ci">
+      <div class="cithumb" style="background:${thumbs[p.t].bg}"><i class="ti ${p.ic}" style="color:${thumbs[p.t].ac}"></i></div>
+      <div style="flex:1;min-width:0">
+        <div class="ciname">${p.name}</div>
+        <div class="cisub">${p.sub}</div>
+        <div class="cisub">Size: ${p.size} · Qty: ${p.qty}</div>
+        <div class="ciprice">Rs.${(p.price*p.qty).toLocaleString()}</div>
+      </div>
+      <button class="crem" onclick="remC('${p.key}')"><i class="ti ti-x"></i></button>
+    </div>
+  `).join('')||'<p style="font-size:13px;color:var(--mid-gray);padding:16px 0">Your bag is empty.</p>';
+}
+function toggleCart(){
+  document.getElementById('cpanel').classList.toggle('open');
+  document.getElementById('cov').classList.toggle('show');
+}
+function setF(btn,f){
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('act'));
+  btn.classList.add('act');render(f);
+}
+function filt(c){
+  const btns=document.querySelectorAll('.fb');
+  btns.forEach(b=>b.classList.remove('act'));
+  ([...btns].find(b=>b.textContent.toLowerCase().trim()===c)||btns[0]).classList.add('act');
+  render(c);
+  document.getElementById('pgrid').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function showT(msg){
+  const t=document.getElementById('toast');
+  document.getElementById('tmsg').textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
+render('all');updCart();
+</script>
+</body>
+</html>
