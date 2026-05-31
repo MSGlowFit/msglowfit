@@ -322,14 +322,7 @@ const thumbs=[
   {bg:'#111',ac:'#F5C800'},
   {bg:'#1a1a2e',ac:'#FF6B6B'},
 ];
-const prods=[
-  {id:1,name:"Floral Anarkali Kurta",sub:"Kurtas · Yellow",price:2199,cat:"women",badge:"new",sizes:["XS","S","M","L","XL"],oos:[],ic:"ti-dress",t:0},
-  {id:2,name:"Embroidered Co-ord Set",sub:"Sets · Teal & White",price:3499,cat:"women",badge:"hot",sizes:["S","M","L","XL","XXL"],oos:["XXL"],ic:"ti-crown",t:1},
-  {id:3,name:"Premium Linen Shirt",sub:"Tops · White",price:1299,oldPrice:1799,cat:"men",badge:"sale",sizes:["S","M","L","XL","XXL"],oos:[],ic:"ti-shirt",t:2},
-  {id:4,name:"High-Waist Palazzo",sub:"Bottoms · Black",price:1599,cat:"women",sizes:["XS","S","M","L","XL"],oos:["XS"],ic:"ti-layout-rows",t:3},
-  {id:5,name:"Silk Printed Dupatta",sub:"Accessories · Yellow",price:799,cat:"accessories",badge:"new",sizes:["Free Size"],oos:[],ic:"ti-sparkles",t:4},
-  {id:6,name:"Slim Chino Trousers",sub:"Bottoms · Charcoal",price:1899,oldPrice:2499,cat:"men",badge:"sale",sizes:["28","30","32","34","36"],oos:["36"],ic:"ti-layout-rows",t:5},
-];
+const prods=[];
 let cart=[],sel={};
 
 function dc(p){return p.oldPrice?Math.round((1-p.price/p.oldPrice)*100):0}
